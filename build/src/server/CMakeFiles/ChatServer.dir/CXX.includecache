@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/server/db/db.h
+mysql/mysql.h
+-
+string
+-
+
+../include/server/friendmodel.hpp
+vector
+-
+user.hpp
+../include/server/user.hpp
+cstdint
+-
+
+../include/server/user.hpp
+string
+-
+
+/home/melody/mychat/src/server/friendmodel.cc
+friendmodel.hpp
+/home/melody/mychat/src/server/friendmodel.hpp
+db.h
+/home/melody/mychat/src/server/db.h
+

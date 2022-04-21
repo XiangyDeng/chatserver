@@ -1,0 +1,9 @@
+/home/melody/mychat/build/CMakeFiles/rebuild_cache.dir
+/home/melody/mychat/build/CMakeFiles/edit_cache.dir
+/home/melody/mychat/build/src/CMakeFiles/rebuild_cache.dir
+/home/melody/mychat/build/src/CMakeFiles/edit_cache.dir
+/home/melody/mychat/build/src/server/CMakeFiles/rebuild_cache.dir
+/home/melody/mychat/build/src/server/CMakeFiles/ChatServer.dir
+/home/melody/mychat/build/src/server/CMakeFiles/edit_cache.dir
+/home/melody/mychat/build/src/client/CMakeFiles/rebuild_cache.dir
+/home/melody/mychat/build/src/client/CMakeFiles/edit_cache.dir
