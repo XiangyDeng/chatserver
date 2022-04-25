@@ -158,7 +158,7 @@ void ChatService::clientCloseException(const muduo::net::TcpConnectionPtr &conn)
 
 // 一对一聊天业务
 void ChatService::oneChat(const muduo::net::TcpConnectionPtr &conn, json &js, muduo::Timestamp Timestamp){
-  int toid = js["to"].get<int>();
+  int toid = js["toid"].get<int>();
 
   bool userState = false;
   {

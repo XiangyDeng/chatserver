@@ -38,5 +38,10 @@
   "directory": "/home/melody/mychat/build/src/server",
   "command": "/usr/bin/x86_64-linux-gnu-g++-7  -I/home/melody/mychat/include -I/home/melody/mychat/include/server -I/home/melody/mychat/include/server/db -I/home/melody/mychat/include/server/model -I/home/melody/mychat/thirdparty -g -g -o CMakeFiles/ChatServer.dir/main.cc.o -c /home/melody/mychat/src/server/main.cc",
   "file": "/home/melody/mychat/src/server/main.cc"
+},
+{
+  "directory": "/home/melody/mychat/build/src/client",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7  -I/home/melody/mychat/include -I/home/melody/mychat/include/server -I/home/melody/mychat/include/server/db -I/home/melody/mychat/include/server/model -I/home/melody/mychat/thirdparty -g -g -o CMakeFiles/ChatClient.dir/main.cc.o -c /home/melody/mychat/src/client/main.cc",
+  "file": "/home/melody/mychat/src/client/main.cc"
 }
 ]
