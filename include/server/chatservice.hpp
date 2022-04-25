@@ -9,7 +9,7 @@
 
 #include "usermodel.hpp"
 #include "offlinemessagemodel.hpp"
-
+#include "groupmodel.hpp"
 
 using json = nlohmann::json;
 using MsgHandler = std::function<void(const muduo::net::TcpConnectionPtr&, json&, muduo::Timestamp)>;
@@ -34,6 +34,12 @@ public:
   void oneChat(const muduo::net::TcpConnectionPtr &conn, json &js, muduo::Timestamp timestamp);
   // 添加好友业务
   void addFriend(const muduo::net::TcpConnectionPtr &conn, json &js, muduo::Timestamp timestamp);
+  // 创建组业务
+  void createGroup(const muduo::net::TcpConnectionPtr &conn, json &js, muduo::Timestamp timestamp);
+  // 加入组业务
+  void addGroup(const muduo::net::TcpConnectionPtr &conn, json &js, muduo::Timestamp timestamp);
+  // 群组聊天业务
+  void groupChat(const muduo::net::TcpConnectionPtr &conn, json &js, muduo::Timestamp timestamp);
 
   // 处理客户的异常退出
   void clientCloseException(const muduo::net::TcpConnectionPtr &conn);
@@ -57,5 +63,6 @@ private:
   UserModel m_userModel;
   OfflineMsgModel m_offlineMsgModel;
   FriendModel m_friendModel;
+  GroupModel m_groupModel;
 
 };

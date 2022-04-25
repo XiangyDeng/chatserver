@@ -1,5 +1,4 @@
 #include "chatservice.hpp"
-
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -31,7 +30,7 @@ ChatService::ChatService() {
 
 // 处理登录业务 id name password
 void ChatService::login(const muduo::net::TcpConnectionPtr &conn, json &js,
-           muduo::Timestamp timestamp) {
+           muduo::Timestamp Timestamp) {
   // step 1. 反序列化得到id 与 password
   uint32_t id = js["id"];
   std::string pwd = js["password"];
@@ -103,7 +102,7 @@ void ChatService::login(const muduo::net::TcpConnectionPtr &conn, json &js,
 
 // 处理注册业务
 void ChatService::reg(const muduo::net::TcpConnectionPtr &conn, json &js,
-                      muduo::Timestamp timestamp) {
+                      muduo::Timestamp Timestamp) {
   // step 1. 读取客户端注册信息：用户名 与 密码
   std::string name = js["name"];
   std::string pwd = js["password"];
@@ -158,7 +157,7 @@ void ChatService::clientCloseException(const muduo::net::TcpConnectionPtr &conn)
 }
 
 // 一对一聊天业务
-void ChatService::oneChat(const muduo::net::TcpConnectionPtr &conn, json &js, muduo::Timestamp timestamp){
+void ChatService::oneChat(const muduo::net::TcpConnectionPtr &conn, json &js, muduo::Timestamp Timestamp){
   int toid = js["to"].get<int>();
 
   bool userState = false;
@@ -178,7 +177,7 @@ void ChatService::oneChat(const muduo::net::TcpConnectionPtr &conn, json &js, mu
 
   // 添加好友业务: MySql表，msgid id字段
 void ChatService::addFriend(const muduo::net::TcpConnectionPtr &conn, json &js,
-                            muduo::Timestamp timestamp) {
+                            muduo::Timestamp Timestamp) {
   // 反序列化获得数据:注意使用get转为整型
   uint32_t userid = js["id"].get<int>();
   uint32_t friendid = js["friendid"].get<int>();
@@ -193,12 +192,63 @@ void ChatService::reset() {
   m_userModel.resetState();
 }
 
+// 创建群组业务
+void ChatService::createGroup(const muduo::net::TcpConnectionPtr &conn, json &js,
+                            muduo::Timestamp Timestamp) {
+    int userid = js["id"].get<int>();
+    std::string name = js["groupname"];
+    std::string desc = js["groupdesc"];
+
+    // 存储新创建的群组信息
+    Group group(-1, name, desc);
+    if (m_groupModel.createGroup(group))
+    {
+        // 存储群组创建人信息
+        m_groupModel.addGroup(userid, group.getId(), "creator");
+    }
+}
+
+// 加入群组业务
+void ChatService::addGroup(const muduo::net::TcpConnectionPtr &conn, json &js, muduo::Timestamp time)
+{
+    int userid = js["id"].get<int>();
+    int groupid = js["groupid"].get<int>();
+    m_groupModel.addGroup(userid, groupid, "normal");
+}
+
+// 群组聊天业务
+void ChatService::groupChat(const muduo::net::TcpConnectionPtr &conn, json &js, muduo::Timestamp time)
+{
+    int userid = js["id"].get<int>();
+    int groupid = js["groupid"].get<int>();
+    std::vector<int> useridVec = m_groupModel.queryGroupUsers(userid, groupid);
+
+    {
+      std::unique_lock<std::mutex> lock(m_connMutex);
+      for (int id : useridVec)
+      {
+          auto it = m_userConnMap.find(id);
+          if (it != m_userConnMap.end())
+          {
+              // 转发群消息
+              it->second->send(js.dump());
+          }
+          else
+          {
+              // 存储离线群消息
+              m_offlineMsgModel.insert(id, js.dump());
+          }
+      }
+      
+    }
+}
+
 // 获取消息id对应的处理器Handler
 MsgHandler ChatService::getHandle(int msgid) {
   if (!m_MsgHandlerrMap.count(msgid)) {
     // 返回空操作
     return [=](const muduo::net::TcpConnectionPtr &conn, json &js,
-               muduo::Timestamp timestamp) {
+               muduo::Timestamp Timestamp) {
         LOG_ERROR << "msgid: " << msgid << " cannot find Handler! ";         
       };
   } else {

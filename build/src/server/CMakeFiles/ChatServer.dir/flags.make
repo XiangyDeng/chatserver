@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/x86_64-linux-gnu-g++-7
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/melody/mychat/include -I/home/melody/mychat/include/server -I/home/melody/mychat/include/server/db -I/home/melody/mychat/thirdparty
+CXX_INCLUDES = -I/home/melody/mychat/include -I/home/melody/mychat/include/server -I/home/melody/mychat/include/server/db -I/home/melody/mychat/include/server/model -I/home/melody/mychat/thirdparty
 
 CXX_FLAGS = -g -g
 

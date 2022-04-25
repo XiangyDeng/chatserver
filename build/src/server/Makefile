@@ -225,33 +225,6 @@ db/db.cc.s:
 	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/db/db.cc.s
 .PHONY : db/db.cc.s
 
-friendmodel.o: friendmodel.cc.o
-
-.PHONY : friendmodel.o
-
-# target to build an object file
-friendmodel.cc.o:
-	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/friendmodel.cc.o
-.PHONY : friendmodel.cc.o
-
-friendmodel.i: friendmodel.cc.i
-
-.PHONY : friendmodel.i
-
-# target to preprocess a source file
-friendmodel.cc.i:
-	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/friendmodel.cc.i
-.PHONY : friendmodel.cc.i
-
-friendmodel.s: friendmodel.cc.s
-
-.PHONY : friendmodel.s
-
-# target to generate assembly for a file
-friendmodel.cc.s:
-	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/friendmodel.cc.s
-.PHONY : friendmodel.cc.s
-
 main.o: main.cc.o
 
 .PHONY : main.o
@@ -279,59 +252,113 @@ main.cc.s:
 	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/main.cc.s
 .PHONY : main.cc.s
 
-offlinemessagemodel.o: offlinemessagemodel.cc.o
+model/friendmodel.o: model/friendmodel.cc.o
 
-.PHONY : offlinemessagemodel.o
-
-# target to build an object file
-offlinemessagemodel.cc.o:
-	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/offlinemessagemodel.cc.o
-.PHONY : offlinemessagemodel.cc.o
-
-offlinemessagemodel.i: offlinemessagemodel.cc.i
-
-.PHONY : offlinemessagemodel.i
-
-# target to preprocess a source file
-offlinemessagemodel.cc.i:
-	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/offlinemessagemodel.cc.i
-.PHONY : offlinemessagemodel.cc.i
-
-offlinemessagemodel.s: offlinemessagemodel.cc.s
-
-.PHONY : offlinemessagemodel.s
-
-# target to generate assembly for a file
-offlinemessagemodel.cc.s:
-	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/offlinemessagemodel.cc.s
-.PHONY : offlinemessagemodel.cc.s
-
-usermodel.o: usermodel.cc.o
-
-.PHONY : usermodel.o
+.PHONY : model/friendmodel.o
 
 # target to build an object file
-usermodel.cc.o:
-	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/usermodel.cc.o
-.PHONY : usermodel.cc.o
+model/friendmodel.cc.o:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/friendmodel.cc.o
+.PHONY : model/friendmodel.cc.o
 
-usermodel.i: usermodel.cc.i
+model/friendmodel.i: model/friendmodel.cc.i
 
-.PHONY : usermodel.i
+.PHONY : model/friendmodel.i
 
 # target to preprocess a source file
-usermodel.cc.i:
-	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/usermodel.cc.i
-.PHONY : usermodel.cc.i
+model/friendmodel.cc.i:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/friendmodel.cc.i
+.PHONY : model/friendmodel.cc.i
 
-usermodel.s: usermodel.cc.s
+model/friendmodel.s: model/friendmodel.cc.s
 
-.PHONY : usermodel.s
+.PHONY : model/friendmodel.s
 
 # target to generate assembly for a file
-usermodel.cc.s:
-	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/usermodel.cc.s
-.PHONY : usermodel.cc.s
+model/friendmodel.cc.s:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/friendmodel.cc.s
+.PHONY : model/friendmodel.cc.s
+
+model/groupmodel.o: model/groupmodel.cc.o
+
+.PHONY : model/groupmodel.o
+
+# target to build an object file
+model/groupmodel.cc.o:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/groupmodel.cc.o
+.PHONY : model/groupmodel.cc.o
+
+model/groupmodel.i: model/groupmodel.cc.i
+
+.PHONY : model/groupmodel.i
+
+# target to preprocess a source file
+model/groupmodel.cc.i:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/groupmodel.cc.i
+.PHONY : model/groupmodel.cc.i
+
+model/groupmodel.s: model/groupmodel.cc.s
+
+.PHONY : model/groupmodel.s
+
+# target to generate assembly for a file
+model/groupmodel.cc.s:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/groupmodel.cc.s
+.PHONY : model/groupmodel.cc.s
+
+model/offlinemessagemodel.o: model/offlinemessagemodel.cc.o
+
+.PHONY : model/offlinemessagemodel.o
+
+# target to build an object file
+model/offlinemessagemodel.cc.o:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/offlinemessagemodel.cc.o
+.PHONY : model/offlinemessagemodel.cc.o
+
+model/offlinemessagemodel.i: model/offlinemessagemodel.cc.i
+
+.PHONY : model/offlinemessagemodel.i
+
+# target to preprocess a source file
+model/offlinemessagemodel.cc.i:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/offlinemessagemodel.cc.i
+.PHONY : model/offlinemessagemodel.cc.i
+
+model/offlinemessagemodel.s: model/offlinemessagemodel.cc.s
+
+.PHONY : model/offlinemessagemodel.s
+
+# target to generate assembly for a file
+model/offlinemessagemodel.cc.s:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/offlinemessagemodel.cc.s
+.PHONY : model/offlinemessagemodel.cc.s
+
+model/usermodel.o: model/usermodel.cc.o
+
+.PHONY : model/usermodel.o
+
+# target to build an object file
+model/usermodel.cc.o:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/usermodel.cc.o
+.PHONY : model/usermodel.cc.o
+
+model/usermodel.i: model/usermodel.cc.i
+
+.PHONY : model/usermodel.i
+
+# target to preprocess a source file
+model/usermodel.cc.i:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/usermodel.cc.i
+.PHONY : model/usermodel.cc.i
+
+model/usermodel.s: model/usermodel.cc.s
+
+.PHONY : model/usermodel.s
+
+# target to generate assembly for a file
+model/usermodel.cc.s:
+	cd /home/melody/mychat/build && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/model/usermodel.cc.s
+.PHONY : model/usermodel.cc.s
 
 # Help Target
 help:
@@ -351,18 +378,21 @@ help:
 	@echo "... db/db.o"
 	@echo "... db/db.i"
 	@echo "... db/db.s"
-	@echo "... friendmodel.o"
-	@echo "... friendmodel.i"
-	@echo "... friendmodel.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... offlinemessagemodel.o"
-	@echo "... offlinemessagemodel.i"
-	@echo "... offlinemessagemodel.s"
-	@echo "... usermodel.o"
-	@echo "... usermodel.i"
-	@echo "... usermodel.s"
+	@echo "... model/friendmodel.o"
+	@echo "... model/friendmodel.i"
+	@echo "... model/friendmodel.s"
+	@echo "... model/groupmodel.o"
+	@echo "... model/groupmodel.i"
+	@echo "... model/groupmodel.s"
+	@echo "... model/offlinemessagemodel.o"
+	@echo "... model/offlinemessagemodel.i"
+	@echo "... model/offlinemessagemodel.s"
+	@echo "... model/usermodel.o"
+	@echo "... model/usermodel.i"
+	@echo "... model/usermodel.s"
 .PHONY : help
 
 
