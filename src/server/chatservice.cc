@@ -239,7 +239,7 @@ void ChatService::groupChat(const muduo::net::TcpConnectionPtr &conn, json &js, 
               m_offlineMsgModel.insert(id, js.dump());
           }
       }
-      
+
     }
 }
 
