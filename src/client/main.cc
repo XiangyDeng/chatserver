@@ -257,14 +257,14 @@ void doLoginResponse(json &responsejs)
 
         // 显示登录用户的基本信息
         showCurrentUserData();
-
         // 显示当前用户的离线消息  个人聊天信息或者群组消息
-        if (responsejs.contains("offlinemsg"))
-        {
+          if (responsejs.contains("offlinemsg")) {
             vector<string> vec = responsejs["offlinemsg"];
+
             for (string &str : vec)
             {
-                json js = json::parse(str);
+              json js = json::parse(str);
+\
                 // time + [id] + name + " said: " + xxx
                 if (ONE_CHAT_MSG == js["msgid"].get<int>())
                 {
@@ -277,6 +277,7 @@ void doLoginResponse(json &responsejs)
                             << " said: " << js["msg"].get<string>() << endl;
                 }
             }
+
         }
 
         g_isLoginSuccess = true;

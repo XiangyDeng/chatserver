@@ -42,7 +42,8 @@ std::vector<std::string> OfflineMsgModel::query(uint32_t userid) {
       // * 把从数据库中查询到的userid用户的所有离线消息放入vector中返回
       MYSQL_ROW row;
       while ((row = mysql_fetch_row(res)) != nullptr) {
-        msg.emplace_back(row[0]);
+        // bug
+        ////msg.emplace_back(row[0]); 
         msg.emplace_back(row[1]);
       }
     }

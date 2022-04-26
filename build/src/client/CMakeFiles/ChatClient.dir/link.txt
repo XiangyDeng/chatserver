@@ -1,1 +1,1 @@
-/usr/bin/x86_64-linux-gnu-g++-7 -g -g -rdynamic CMakeFiles/ChatClient.dir/main.cc.o -o ../../../bin/ChatClient  -lmysqlclient -lmuduo_net -lmuduo_base -lpthread 
+/usr/bin/x86_64-linux-gnu-g++-7 -g -g -rdynamic CMakeFiles/ChatClient.dir/main.cc.o -o ../../../bin/ChatClient  -lpthread 

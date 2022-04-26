@@ -1,5 +1,6 @@
 #include "chatservice.hpp"
 #include <cstdint>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <map>
@@ -65,8 +66,9 @@ void ChatService::login(const muduo::net::TcpConnectionPtr &conn, json &js,
 
       // * 查询用户是否有离线消息
       std::vector<std::string> offlineMsg = m_offlineMsgModel.query(id);
+
       if (!offlineMsg.empty()) {
-        response["offlineMsg"] = offlineMsg;
+        response["offlinemsg"] = offlineMsg;
         // 读取该用户的离线消息后，清空数据库表中存储的离线消息
         m_offlineMsgModel.remove(id);
       } 

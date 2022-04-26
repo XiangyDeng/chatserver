@@ -125,21 +125,6 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-lmysqlclient",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lmuduo_net",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lmuduo_base",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
 				"fragment" : "-lpthread",
 				"role" : "libraries"
 			}
