@@ -23,10 +23,25 @@ ChatService::ChatService() {
       {ONE_CHAT_MSG,std::bind(&ChatService::oneChat, this, std::placeholders::_1,
                  std::placeholders::_2, std::placeholders::_3)});
 
-    m_MsgHandlerrMap.insert(
-      {ADD_FRIEND_MSG,std::bind(&ChatService::addFriend, this, std::placeholders::_1,
+  m_MsgHandlerrMap.insert(
+      {ADD_FRIEND_MSG,
+       std::bind(&ChatService::addFriend, this, std::placeholders::_1,
                  std::placeholders::_2, std::placeholders::_3)});
-  
+  m_MsgHandlerrMap.insert(
+      {ADD_GROUP_MSG,std::bind(&ChatService::addGroup, this, std::placeholders::_1,
+                 std::placeholders::_2, std::placeholders::_3)});
+  m_MsgHandlerrMap.insert(
+      {CREATE_GROUP_MSG,std::bind(&ChatService::createGroup, this, std::placeholders::_1,
+                 std::placeholders::_2, std::placeholders::_3)});        
+  m_MsgHandlerrMap.insert(
+      {ADD_GROUP_MSG,std::bind(&ChatService::addGroup, this, std::placeholders::_1,
+                 std::placeholders::_2, std::placeholders::_3)});        
+  m_MsgHandlerrMap.insert(
+      {GROUP_CHAT_MSG,std::bind(&ChatService::groupChat, this, std::placeholders::_1,
+                 std::placeholders::_2, std::placeholders::_3)});         
+    m_MsgHandlerrMap.insert(
+      {LOGINOUT_MSG,std::bind(&ChatService::loginOut, this, std::placeholders::_1,
+                 std::placeholders::_2, std::placeholders::_3)});         
 }
 
 // 处理登录业务 id name password
@@ -89,6 +104,36 @@ void ChatService::login(const muduo::net::TcpConnectionPtr &conn, json &js,
 
         response["friends"] = friendMsg;
       }
+
+       // 查询用户的群组信息
+      std::vector<Group> groupuserVec = m_groupModel.queryGroups(id);
+      if (!groupuserVec.empty())
+      {
+          // group:[{groupid:[xxx, xxx, xxx, xxx]}]
+          std::vector<std::string> groupV;
+          for (Group &group : groupuserVec)
+          {
+              json grpjson;
+              grpjson["id"] = group.getId();
+              grpjson["groupname"] = group.getName();
+              grpjson["groupdesc"] = group.getDesc();
+              std::vector<std::string> userV;
+              for (GroupUser &user : group.getUsers())
+              {
+                  json js;
+                  js["id"] = user.getId();
+                  js["name"] = user.getName();
+                  js["state"] = user.getState();
+                  js["role"] = user.getRole();
+                  userV.push_back(js.dump());
+              }
+              grpjson["users"] = userV;
+              groupV.push_back(grpjson.dump());
+          }
+
+          response["groups"] = groupV;
+      }
+
 
       conn->send(response.dump());
     }
@@ -195,8 +240,10 @@ void ChatService::reset() {
 }
 
 // 创建群组业务
-void ChatService::createGroup(const muduo::net::TcpConnectionPtr &conn, json &js,
-                            muduo::Timestamp Timestamp) {
+void ChatService::createGroup(const muduo::net::TcpConnectionPtr &conn,
+                              json &js, muduo::Timestamp Timestamp) {
+        std::cout << js<< std::endl;
+
     int userid = js["id"].get<int>();
     std::string name = js["groupname"];
     std::string desc = js["groupdesc"];
@@ -245,8 +292,27 @@ void ChatService::groupChat(const muduo::net::TcpConnectionPtr &conn, json &js, 
     }
 }
 
+// 处理注销业务
+void ChatService::loginOut(const muduo::net::TcpConnectionPtr &conn, json &js,
+                           muduo::Timestamp timestamp) {
+  int userid = js["id"].get<int>();
+
+  {
+    std::unique_lock<std::mutex> lock(m_connMutex);
+    auto it = m_userConnMap.find(userid);
+    if (it != m_userConnMap.end()) {
+      m_userConnMap.erase(it);
+    }
+  }
+
+  // 更新数据库用户状态
+  User user(userid,"","","offline");
+  m_userModel.updateState(user);
+}
+
 // 获取消息id对应的处理器Handler
 MsgHandler ChatService::getHandle(int msgid) {
+
   if (!m_MsgHandlerrMap.count(msgid)) {
     // 返回空操作
     return [=](const muduo::net::TcpConnectionPtr &conn, json &js,

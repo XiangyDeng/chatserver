@@ -27,8 +27,8 @@ void GroupModel::addGroup(int userid, int groupid, std::string role) {
 
   sprintf(
       sql,
-      "INSERT INTO GroupUser (userid, userid, grouprole) VALUES (%d, %d, '%s')",
-      groupid, userid, role.c_str());
+      "INSERT INTO GroupUser (userid, groupid, grouprole) VALUES (%d, %d, '%s')",
+      userid, groupid, role.c_str());
 
   MySql mysql("localhost", "melody", "yuyu9633", 3306, "chat");
   if (mysql.connect()) {
